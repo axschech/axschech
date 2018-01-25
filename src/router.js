@@ -29,7 +29,9 @@ route = class Route {
 	constructor(config) {
 		this.key = config.key;
 		this.title = config.title;	
-	}
+		this.content = config.content;
+		this.path = config.path;
+	};
 };
 
 
