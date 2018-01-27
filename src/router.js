@@ -1,39 +1,64 @@
-let router = class Router {
-	constructor() {
-		this.route = '';
-	};
+let router,
+	route;
 
-	getRoute() {
-		return this.route;
-	}
-
-	setRoute(route) {
-		this.route = route;
-		this.setUrlPath(this.route)
-		return this.route;
-	}
-
-	setUrlPath(url) {
-		window.history.pushState({
-			"html":'',
-			"pageTitle": '',
-		},"", url);
-
-	}
-
-	detectRoute() {
-		this.setRoute(location.pathname.substring(1));
-	}
-},
-route = class Route {
+class Route {
 	constructor(config) {
 		this.key = config.key;
-		this.title = config.title;	
-		this.content = config.content;
+		this.title = config.title;
 		this.path = config.path;
 	};
 };
 
+router = class Router {
+	constructor() {
+		this.routes = [];
+	}
+
+	createRoute(config) {
+		let routeObj = new Route(config)
+
+		if (!this.getRoute(routeObj.key)) {
+			this.routes.push(routeObj);
+			return true;
+		}
+
+		return false;
+	}
+
+	getRoute(value, property) {
+		if (!property) {
+			property = 'key';
+		}
+		return this.routes.find(item => {
+			return item[property] === value;
+		});
+	}
+
+	setRoute(routeKey) {
+		let route = this.getRoute(routeKey);
+		this.setUrlPath(route);
+		return route;
+	}
+
+	setUrlPath(route) {
+		console.log(route);
+		if (route.title) {
+			document.title = route.title;
+		}
+		document.querySelector('#' + route.key).style.display = 'initial';
+		window.history.pushState({},"", route.path);
+
+	}
+
+	detectRoute() {
+		let path = location.pathname.substring(1),
+			routeObj = this.getRoute(path, 'path');
+
+		if (routeObj) {
+			this.setRoute(routeObj.key);
+		}
+	}
+};
 
 module.exports = {
 	Router: router
