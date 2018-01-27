@@ -34,6 +34,7 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin("styles.css"),
   ],
+  devtool: 'inline-source-map',
   devServer: {
     index: './index.html',
     port: 9000,

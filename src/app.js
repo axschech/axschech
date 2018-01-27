@@ -3,7 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.scss';
 
 let r = new Router(),
-    buttons = Array.from(document.getElementsByClassName('routes'));
+    titleWords = Array.from(document.getElementsByClassName('title-word')),
+    contentItems = Array.from(document.querySelectorAll('.hidden > div'));
 
 r.createRoute({
   key: 'default',
@@ -25,13 +26,3 @@ r.createRoute({
 console.log(r.routes);
 r.detectRoute();
 
-buttons.forEach(el => {
-  el.addEventListener('click', e => {
-      document.querySelector(
-        '.hidden'
-      ).querySelectorAll('div').forEach(divEl => {
-          divEl.style.display = 'none';
-      });
-      r.setRoute(e.target.dataset.route);
-    }, false);
-});
