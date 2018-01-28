@@ -1,10 +1,10 @@
 import {Router} from './router';
+import {Renderer} from './renderer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.scss';
+let ren = new Renderer();
+let r = new Router(ren);
 
-let r = new Router(),
-    titleWords = Array.from(document.getElementsByClassName('title-word')),
-    contentItems = Array.from(document.querySelectorAll('.hidden > div'));
 
 r.createRoute({
   key: 'default',
@@ -23,6 +23,6 @@ r.createRoute({
   title: 'wah',
   path: 'wat'
 });
-console.log(r.routes);
+
 r.detectRoute();
 

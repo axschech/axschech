@@ -10,7 +10,8 @@ class Route {
 };
 
 router = class Router {
-	constructor() {
+	constructor(renderer) {
+		this.renderer = renderer;
 		this.routes = [];
 	}
 
@@ -45,9 +46,10 @@ router = class Router {
 		if (route.title) {
 			document.title = route.title;
 		}
-		document.querySelector('#' + route.key).style.display = 'initial';
+		this.renderer.hideTitleWords();
+		this.renderer.hideContentItems();
+		this.renderer.showContentItem(route.key);
 		window.history.pushState({},"", route.path);
-
 	}
 
 	detectRoute() {
