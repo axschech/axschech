@@ -1,22 +1,22 @@
-let router,
-	route;
+import Renderer from './renderer.js';
+import Transport from './transport.js';
+import Route from './route.js';
 
-class Route {
-	constructor(config) {
-		this.key = config.key;
-		this.title = config.title;
-		this.path = config.path;
-	};
-};
-
-router = class Router {
-	constructor(renderer) {
-		this.renderer = renderer;
+class Router {
+	constructor() {
+		this.renderer = new Renderer();
+		this.transport = new Transport(this);
+		this.renderer.hideRoutes();
 		this.routes = [];
 	}
 
 	createRoute(config) {
-		let routeObj = new Route(config)
+		let routeObj = new Route(config),
+			renderer = this.renderer;
+
+		routeObj.showRoute = function () {
+			renderer.showRoute(routeObj.key);
+		};
 
 		if (!this.getRoute(routeObj.key)) {
 			this.routes.push(routeObj);
@@ -42,14 +42,11 @@ router = class Router {
 	}
 
 	setUrlPath(route) {
-		console.log(route);
 		if (route.title) {
 			document.title = route.title;
 		}
-		this.renderer.hideTitleWords();
-		this.renderer.hideContentItems();
-		this.renderer.showContentItem(route.key);
-		window.history.pushState({},"", route.path);
+		route.showRoute();
+		window.history.pushState({},"", route.path || '/');
 	}
 
 	detectRoute() {
@@ -60,8 +57,6 @@ router = class Router {
 			this.setRoute(routeObj.key);
 		}
 	}
-};
+}
 
-module.exports = {
-	Router: router
-};
+export default Router;

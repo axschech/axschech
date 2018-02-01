@@ -5,25 +5,20 @@
   <title>Home</title>
 </head>
 <body>
-<div class="container">
-  <div class="title-word" data-route="default">Home</div>
-  <div class="title-word" data-route="more">Test This</div>
-  <div class="title-word" data-route="ohno">Hmmm</div>
-</div>
-<div class="container hidden">
-    <div id="default">
-        <h1>Home</h1>
+  <div class="container" data-route="default">
+      <h1 data-go="who">Who</h1>
+      <h1 data-go="what">What</h1>
+  </div>
+  <div class="container">
+    <div data-route="who">
+        Who Stuff Here
+        <a href data-go="default">Back</a>
     </div>
-    <div id="more">
-        <h1>Cool times?</h1>
+    <div data-route="what">
+        What Stuff Here
+        <a href data-go="default">Back</a>
     </div>
-    <div id="ohno">
-        <h1>Not cool times :( </h1>
-    </div>
-</div>
-<div class="container">
-  <a href>Back </a>
-</div>
+  </div>
 <script src="dist/app.min.js"></script>
 </body>
 </html>

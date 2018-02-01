@@ -1,27 +1,31 @@
-import {Router} from './router';
-import {Renderer} from './renderer';
+import Router from './router.js';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.scss';
-let ren = new Renderer();
-let r = new Router(ren);
-
-
+let r = new Router();
+console.log('page is loading');
 r.createRoute({
-  key: 'default',
-  title: 'Home',
-  path: ''
+	key: 'default',
+	title: 'Home',
+	path: ''
 });
 
 r.createRoute({
-  key: 'more',
-  title: 'henh',
-  path: 'test'
+  key: 'who',
+  title: 'Who',
+  path: 'who'
 });
 
 r.createRoute({
-  key: 'ohno',
-  title: 'wah',
-  path: 'wat'
+  key: 'what',
+  title: 'What',
+  path: 'what'
+});
+
+r.createRoute({
+  key: 'where',
+  title: 'Where',
+  path: 'where'
 });
 
 r.detectRoute();
