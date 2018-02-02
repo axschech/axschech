@@ -2,8 +2,9 @@ import Router from './router.js';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.scss';
+
 let r = new Router();
-console.log('page is loading');
+
 r.createRoute({
 	key: 'default',
 	title: 'Home',
