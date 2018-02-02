@@ -1,5 +1,9 @@
-.hidden {
-	>div {
-		display: none;
+.title-words {
+	a {
+		text-align: center;
+		margin: 100px 0px;
+		font-size: 100px;
+		cursor: pointer;
+		display: block;
 	}
 }
