@@ -1,9 +1,22 @@
+body {
+	background-color: #ccc;
+}
+.header {
+	a {
+		&:hover {
+			color: #fff;
+		}
+	}
+}
 .title-words {
 	a {
-		text-align: center;
+		color: #0548ff;
 		margin: 10px 0px;
 		font-size: 100px;
 		cursor: pointer;
 		display: block;
+		&:hover {
+			color: #000;
+		}
 	}
 }
